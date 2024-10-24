@@ -3,9 +3,9 @@ This is an example project, how to convert the yokogawa SQUID measurements at PT
 
 To run the main.py script you need to install: mne, pyvistaqt, traitlets, pyqt5, nibabel, scikit-learn(optional)
 
-Run the file as python main.py. At the end comment or uncomment if you want to run the conversion with or without geometry.
+Run the file as "`python main.py`". At the end of main.py file comment or uncomment if you want to run the conversion with or without geometry.
 
-To obtain the head-mri-transformation file, you have to use the coregistration tool "in code mne.gui.coregistration(subjects_dir=subject_dir, subject="urma", block=True)". You have to follow the instructions in the gui program. Dont forget! You have to use the filename-raw.fif with zebris data included.
+To obtain the head-mri-transformation file, you have to use the coregistration tool "in code `mne.gui.coregistration(subjects_dir=subject_dir, subject="urma", block=True)`". You have to follow the instructions in the gui program. Dont forget! You have to use the filename-raw.fif with zebris data included.
 
 To test this script you can download the example files from https://nextcloud.urbanmarhl.com/s/F9fnGDiDWmA3Y32
 
