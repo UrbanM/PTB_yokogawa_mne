@@ -46,7 +46,7 @@ def import_coregistration2(zebris_file):
     return elp_zebris * 10 ** (-3), zeb * 10 ** (-3)
 
 
-def preprocess():
+def preprocess_geometry():
     import mne
 
     con_name = "DATA/urma181019.0300.con"
@@ -57,11 +57,24 @@ def preprocess():
     elp, hsp = import_coregistration2(zebris_file)
 
     raw = mne.io.read_raw_kit(con_name, mrk=marker_file, elp=elp, hsp=hsp)
+    raw.save("urma181019.0300-raw.fif", overwrite=True)
+    raw.plot(block=True)
 
-    mne.gui.coregistration(subjects_dir=subject_dir, subject="urma")
+    mne.bem.make_scalp_surfaces(subjects_dir=subject_dir, subject="urma")
+    mne.gui.coregistration(subjects_dir=subject_dir, subject="urma", block=True)
 
     return
 
 
+def_preprocess():
+    con_name = "DATA/urma181019.0300.con"
+    raw = mne.io.read_raw_kit(con_name)
+    raw.plot(block=True)
+    return
+
+
 if __name__ == '__main__':
+    # Converting con file to .fif with geometry
+    preprocess_geometry()
+    # Converting con file to .fif without geometry
     preprocess()
