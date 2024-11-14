@@ -1,5 +1,10 @@
 # This is a sample Python script.
 # Created by Urban Marhl
+import mne
+# You need this two lines if you work with linux wayland compositor
+# import os
+# os.environ["QT_QPA_PLATFORM"] = "xcb"
+
 
 def import_coregistration2(zebris_file):
     import re
@@ -47,8 +52,6 @@ def import_coregistration2(zebris_file):
 
 
 def preprocess_geometry():
-    import mne
-
     con_name = "DATA/urma181019.0300.con"
     zebris_file = "DATA/urma181019.0300.sfp"
     marker_file = "DATA/urma181019.0300.mrk"
@@ -60,13 +63,15 @@ def preprocess_geometry():
     raw.save("urma181019.0300-raw.fif", overwrite=True)
     raw.plot(block=True)
 
-    mne.bem.make_scalp_surfaces(subjects_dir=subject_dir, subject="urma")
+    # Next line is to make scalp surfaces, from the fresurfer segmentation!
+    # mne.bem.make_scalp_surfaces(subjects_dir=subject_dir, subject="urma")
+
     mne.gui.coregistration(subjects_dir=subject_dir, subject="urma", block=True)
 
     return
 
 
-def_preprocess():
+def preprocess():
     con_name = "DATA/urma181019.0300.con"
     raw = mne.io.read_raw_kit(con_name)
     raw.plot(block=True)
