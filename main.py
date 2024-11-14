@@ -66,7 +66,8 @@ def preprocess_geometry():
     # Next line is to make scalp surfaces, from the fresurfer segmentation!
     # mne.bem.make_scalp_surfaces(subjects_dir=subject_dir, subject="urma")
 
-    mne.gui.coregistration(subjects_dir=subject_dir, subject="urma", block=True)
+    mne.gui.coregistration(subjects_dir=subject_dir, subject="urma",
+                           block=True)
 
     return
 
